@@ -1,0 +1,13 @@
+{
+  "name": "CRAVE CLUB",
+  "short_name": "CRAVE CLUB",
+  "description": "A simple, customizable shop app for CRAVE CLUB.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fff7e9",
+  "theme_color": "#641f32",
+  "icons": [
+    { "src": "images/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

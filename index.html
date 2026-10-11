@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#641f32" />
+  <meta name="description" content="A simple, customizable CRAVE CLUB shop app." />
+  <title>CRAVE CLUB</title>
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <button class="brand" id="brandHome" aria-label="Go to home">
+      <img src="images/logo.svg" alt="" class="brand-logo" />
+      <span>CRAVE <b>CLUB</b></span>
+    </button>
+    <button class="home-icon" id="homeButton" aria-label="Home" title="Home">⌂</button>
+  </header>
+
+  <main class="app-shell">
+    <section id="homeScreen" class="screen active">
+      <div class="welcome">
+        <p class="eyebrow">YOUR LITTLE SHOP HELPER</p>
+        <h1>Hey, Crave Club! <span>♡</span></h1>
+        <p>What would you like to open?</p>
+      </div>
+      <div class="home-grid">
+        <button class="home-card" data-screen="menuScreen"><span class="card-emoji">🍔</span><span class="card-title">Menu List</span><span class="card-subtitle">Food, images & prices</span><span class="card-arrow">↗</span></button>
+        <button class="home-card" data-screen="ordersScreen"><span class="card-emoji">🧾</span><span class="card-title">Order Taking</span><span class="card-subtitle">Choose items & tables</span><span class="card-arrow">↗</span></button>
+        <button class="home-card" data-screen="moneyScreen"><span class="card-emoji">💰</span><span class="card-title">Money Tracker</span><span class="card-subtitle">Today's sales & expenses</span><span class="card-arrow">↗</span></button>
+        <button class="home-card" data-screen="storageScreen"><span class="card-emoji">📦</span><span class="card-title">Storage Management</span><span class="card-subtitle">Your stock & quantities</span><span class="card-arrow">↗</span></button>
+        <button class="home-card emergency-card" data-screen="emergencyScreen"><span class="card-emoji">☎️</span><span class="card-title">Emergency Numbers</span><span class="card-subtitle">Your saved contacts</span><span class="card-arrow">↗</span></button>
+      </div>
+      <p class="small-note">Your shop, your list, your rules. ♡</p>
+    </section>
+
+    <section id="menuScreen" class="screen">
+      <div class="section-heading"><div><p class="eyebrow">YOUR FOOD LIST</p><h1>Menu List <span>🍟</span></h1><p>Add only the food image, name and price.</p></div><button class="primary-button" id="addMenuOpen">＋ Add item</button></div>
+      <div id="menuGrid" class="food-grid"></div>
+      <div id="menuEmpty" class="empty-state"><span>🍕</span><h3>Your menu starts here</h3><p>Tap “Add item” to add a food image, name and price.</p></div>
+    </section>
+
+    <section id="ordersScreen" class="screen">
+      <div class="section-heading"><div><p class="eyebrow">CUSTOMER ORDERS</p><h1>Order Taking <span>🧾</span></h1><p>Select the food and table. That's it.</p></div></div>
+      <div class="order-layout">
+        <div class="panel"><div class="panel-title-row"><h2>Choose food</h2><span class="tiny-pill" id="orderMenuCount">0 items</span></div><div id="orderFoodGrid" class="order-food-grid"></div><div id="orderMenuEmpty" class="empty-inline">Add food in Menu List first.</div></div>
+        <div class="panel order-panel"><h2>Current order</h2>
+          <label class="field-label" for="tableSelect">Table number</label>
+          <div class="table-line"><select id="tableSelect"></select><button class="plus-button" id="addTableButton" title="Add table">＋</button></div>
+          <div id="cartItems" class="cart-items"><p class="muted">Choose food to start an order.</p></div>
+          <div class="order-total"><span>Total</span><strong id="cartTotal">₹0.00</strong></div>
+          <button class="primary-button full-width" id="saveOrderButton">Save order</button>
+        </div>
+      </div>
+      <div class="panel recent-orders"><div class="panel-title-row"><h2>Orders today</h2><span class="tiny-pill" id="ordersTodayCount">0 orders</span></div><div id="todayOrdersList"></div></div>
+    </section>
+
+    <section id="moneyScreen" class="screen">
+      <div class="section-heading"><div><p class="eyebrow">KEEP IT SIMPLE</p><h1>Money Tracker <span>💰</span></h1><p>Numbers update when you save an order or expense.</p></div><button class="primary-button" id="addExpenseOpen">＋ Add expense</button></div>
+      <div class="money-grid">
+        <article class="money-card"><span>Today's sales</span><strong id="todaySales">₹0.00</strong><small>Saved orders today</small></article>
+        <article class="money-card"><span>Today's expenses</span><strong id="todayExpenses">₹0.00</strong><small>Expenses recorded today</small></article>
+        <article class="money-card"><span>Balance</span><strong id="todayBalance">₹0.00</strong><small>Sales minus expenses</small></article>
+        <article class="money-card"><span>Orders today</span><strong id="todayOrderNumber">0</strong><small>Orders saved today</small></article>
+      </div>
+      <div class="panel"><div class="panel-title-row"><h2>Today's expenses</h2><span class="tiny-pill" id="expenseCount">0 entries</span></div><div id="expenseList" class="simple-list"></div><div id="expenseEmpty" class="empty-inline">No expenses added today.</div></div>
+      <div class="panel"><div class="panel-title-row"><h2>Recent orders</h2></div><div id="moneyOrdersList" class="simple-list"></div><div id="moneyOrdersEmpty" class="empty-inline">No orders saved today.</div></div>
+    </section>
+
+    <section id="storageScreen" class="screen">
+      <div class="section-heading"><div><p class="eyebrow">YOUR SUPPLIES</p><h1>Storage Management <span>📦</span></h1><p>Add any stock item and update the quantity yourself.</p></div><button class="primary-button" id="addStockOpen">＋ Add stock</button></div>
+      <div id="stockList" class="stock-list"></div>
+      <div id="stockEmpty" class="empty-state"><span>🧺</span><h3>No stock items yet</h3><p>Add your own ingredients or supplies.</p></div>
+    </section>
+
+    <section id="emergencyScreen" class="screen">
+      <div class="section-heading"><div><p class="eyebrow">USEFUL CONTACTS</p><h1>Emergency Numbers <span>☎️</span></h1><p>Add any name, phone number and optional note.</p></div><button class="primary-button" id="addContactOpen">＋ Add contact</button></div>
+      <div id="contactList" class="contact-list"></div>
+      <div id="contactEmpty" class="empty-state"><span>☎️</span><h3>No contacts saved</h3><p>Add emergency or useful shop contacts here.</p></div>
+    </section>
+  </main>
+
+  <dialog id="itemDialog" class="app-dialog"><form id="itemForm"><div class="dialog-head"><h2 id="itemDialogTitle">Add menu item</h2><button type="button" class="close-button" data-close="itemDialog" aria-label="Close">×</button></div><input type="hidden" id="itemId" /><div class="form-fields"><label class="field-label">Food name<input id="itemName" type="text" maxlength="70" placeholder="e.g. Burger" required /></label><label class="field-label">Price (₹)<input id="itemPrice" type="number" min="0" step="0.01" placeholder="e.g. 120" required /></label><label class="field-label">Food image <span class="muted inline-muted">(optional)</span><input id="itemImage" type="file" accept="image/*" /></label><div id="imagePreviewWrap" class="image-preview-wrap hidden"><img id="imagePreview" alt="Food preview" /><button type="button" id="removeImageButton" class="text-button">Remove image</button></div><p class="form-hint">Choose a photo from your device. Keep it reasonably small.</p></div><div class="dialog-actions"><button type="button" class="secondary-button" data-close="itemDialog">Cancel</button><button type="submit" class="primary-button">Save item</button></div></form></dialog>
+
+  <dialog id="tableDialog" class="app-dialog small-dialog"><form id="tableForm"><div class="dialog-head"><h2>Add table</h2><button type="button" class="close-button" data-close="tableDialog">×</button></div><label class="field-label">Table name or number<input id="tableName" type="text" maxlength="30" placeholder="e.g. Table 5" required /></label><div class="dialog-actions"><button type="button" class="secondary-button" data-close="tableDialog">Cancel</button><button type="submit" class="primary-button">Add table</button></div></form></dialog>
+
+  <dialog id="expenseDialog" class="app-dialog small-dialog"><form id="expenseForm"><div class="dialog-head"><h2>Add expense</h2><button type="button" class="close-button" data-close="expenseDialog">×</button></div><label class="field-label">Expense name<input id="expenseName" type="text" maxlength="70" placeholder="e.g. Milk" required /></label><label class="field-label">Amount (₹)<input id="expenseAmount" type="number" min="0.01" step="0.01" placeholder="e.g. 250" required /></label><div class="dialog-actions"><button type="button" class="secondary-button" data-close="expenseDialog">Cancel</button><button type="submit" class="primary-button">Save expense</button></div></form></dialog>
+
+  <dialog id="stockDialog" class="app-dialog small-dialog"><form id="stockForm"><div class="dialog-head"><h2 id="stockDialogTitle">Add stock</h2><button type="button" class="close-button" data-close="stockDialog">×</button></div><input type="hidden" id="stockId" /><label class="field-label">Item name<input id="stockName" type="text" maxlength="70" placeholder="e.g. Cheese" required /></label><div class="two-fields"><label class="field-label">Quantity<input id="stockQty" type="number" min="0" step="any" placeholder="e.g. 5" required /></label><label class="field-label">Unit<input id="stockUnit" type="text" maxlength="20" placeholder="kg, packets, pcs" required /></label></div><div class="dialog-actions"><button type="button" class="secondary-button" data-close="stockDialog">Cancel</button><button type="submit" class="primary-button">Save stock</button></div></form></dialog>
+
+  <dialog id="contactDialog" class="app-dialog small-dialog"><form id="contactForm"><div class="dialog-head"><h2 id="contactDialogTitle">Add contact</h2><button type="button" class="close-button" data-close="contactDialog">×</button></div><input type="hidden" id="contactId" /><label class="field-label">Name<input id="contactName" type="text" maxlength="70" placeholder="e.g. Electrician" required /></label><label class="field-label">Phone number<input id="contactPhone" type="tel" maxlength="30" placeholder="Enter phone number" required /></label><label class="field-label">Note (optional)<input id="contactNote" type="text" maxlength="100" placeholder="e.g. Shop maintenance" /></label><div class="dialog-actions"><button type="button" class="secondary-button" data-close="contactDialog">Cancel</button><button type="submit" class="primary-button">Save contact</button></div></form></dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
